@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Color Palette for reference, primarily managed by Tailwind config now */
+  --color-bg-dark: #050505;
+}
+
+body {
+  @apply bg-bg-dark text-white font-rajdhani overflow-x-hidden antialiased;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-glass transition-all duration-300;
+}
+
+.glass-nav {
+  @apply bg-black/70 backdrop-blur-lg border-b border-white/10;
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(138, 43, 226, 0.8), 0 0 20px rgba(75, 0, 130, 0.6);
+}
+
+.neon-border {
+  @apply border border-purple-500;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bg-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-purple-600 rounded-full hover:bg-violet-500 transition-colors;
+}
+
+/* Utility for text gradients */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-white;
+}
+
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+/* 3D Flip Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* 3D Flip Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
