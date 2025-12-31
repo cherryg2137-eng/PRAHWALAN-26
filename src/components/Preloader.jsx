@@ -10,13 +10,41 @@ const Preloader = ({ onLoadingComplete }) => {
             setTimeout(() => {
                 if (onLoadingComplete) onLoadingComplete();
             }, 1000);
-        }, 3000);
+        }, 5000);
 
         return () => clearTimeout(timer);
     }, [onLoadingComplete]);
 
-    // Complex Circuit / Hex Path
-    const circuitPath = "M50,10 L90,30 L90,70 L50,90 L10,70 L10,30 Z M50,10 L50,30 M90,30 L70,30 M90,70 L70,70 M50,90 L50,70 M10,70 L30,70 M10,30 L30,30 M50,50 L50,50";
+    const Sparkles = () => {
+        return (
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {[...Array(20)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute bg-[#ffd700] rounded-full opacity-0"
+                        style={{
+                            width: Math.random() * 2 + 1 + "px",
+                            height: Math.random() * 2 + 1 + "px",
+                            left: Math.random() * 100 + "%",
+                            top: Math.random() * 100 + "%",
+                            filter: "blur(0.5px)"
+                        }}
+                        animate={{
+                            y: [0, -40],
+                            opacity: [0, 0.8, 0],
+                            scale: [0, 1.2, 0]
+                        }}
+                        transition={{
+                            duration: Math.random() * 3 + 2,
+                            repeat: Infinity,
+                            delay: Math.random() * 2,
+                            ease: "easeInOut"
+                        }}
+                    />
+                ))}
+            </div>
+        );
+    };
 
     return (
         <AnimatePresence>
@@ -25,81 +53,75 @@ const Preloader = ({ onLoadingComplete }) => {
                     className="fixed inset-0 z-[100] flex items-center justify-center bg-black overflow-hidden"
                     initial={{ opacity: 1 }}
                     exit={{
-                        clipPath: "circle(0% at 50% 50%)",
-                        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
+                        opacity: 0,
+                        transition: { duration: 1.5, ease: "easeInOut" }
                     }}
                 >
-                    {/* Digital Grid Background */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,170,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,170,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_black_100%)]"></div>
+                    {/* Background Layers */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a0614] to-[#1a0f3c]"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.1)_0%,transparent_70%)]"></div>
 
-                    <div className="relative flex flex-col items-center gap-8">
-                        {/* --- THE SINGULARITY --- */}
-                        <div className="relative w-40 h-40 flex items-center justify-center">
+                    <Sparkles />
 
-                            {/* Spinning Data Ring */}
+                    <div className="relative z-10 flex flex-col items-center justify-center w-full px-8">
+
+                        {/* ACE PRESENTS - Grouped for perfect alignment */}
+                        <div className="flex flex-col items-center mb-6">
                             <motion.div
-                                className="absolute inset-0 border border-teal-500/20 rounded-full border-t-teal-400 border-r-teal-400 shadow-[0_0_30px_rgba(45,212,191,0.2)]"
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                            />
-                            <motion.div
-                                className="absolute inset-2 border border-violet-500/20 rounded-full border-b-violet-400 border-l-violet-400 shadow-[0_0_30px_rgba(139,92,246,0.2)]"
-                                animate={{ rotate: -360 }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                            />
-
-                            {/* SVG Circuit Draw */}
-                            <svg viewBox="0 0 100 100" className="w-24 h-24 drop-shadow-[0_0_25px_rgba(20,184,166,0.8)]">
-                                <motion.path
-                                    d={circuitPath}
-                                    fill="transparent"
-                                    stroke="#2dd4bf" // Teal-400
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    initial={{ pathLength: 0, opacity: 0 }}
-                                    animate={{ pathLength: 1, opacity: 1 }}
-                                    transition={{ duration: 2, ease: "easeInOut", repeat: Infinity, repeatType: "reverse", repeatDelay: 0.5 }}
-                                />
-                                <motion.path
-                                    d="M50,40 L60,50 L50,60 L40,50 Z"
-                                    fill="#a78bfa"
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: [0, 1.5, 1] }}
-                                    transition={{ duration: 1, delay: 1, repeat: Infinity, repeatDelay: 2 }}
-                                />
-                            </svg>
-
-                            {/* Extra Glow Core - New Addition */}
-                            <motion.div
-                                className="absolute inset-0 bg-teal-400/10 blur-xl rounded-full"
-                                animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.2, 0.5, 0.2] }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                            />
-                        </div>
-
-                        {/* --- DECODING TEXT --- */}
-                        <div className="flex flex-col items-center gap-2">
-                            <h1 className="text-4xl font-bold font-orbitron tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-violet-500">
-                                SYSTEM START
-                            </h1>
-
-                            <motion.div
-                                className="flex gap-1 h-1 w-48 bg-gray-900 rounded-full overflow-hidden"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 1.5, delay: 0.5 }}
+                                className="flex items-baseline gap-4"
                             >
-                                <motion.div
-                                    className="h-full bg-teal-400 shadow-[0_0_10px_#2dd4bf]"
-                                    initial={{ width: 0 }}
-                                    animate={{ width: "100%" }}
-                                    transition={{ duration: 3, ease: "easeInOut" }}
-                                />
+                                <span
+                                    className="text-6xl md:text-8xl text-[#ffd700] font-serif font-bold tracking-tighter drop-shadow-[0_0_15px_rgba(255,215,0,0.4)]"
+                                    style={{ fontFamily: '"Times New Roman", Times, serif' }}
+                                >
+                                    ACE
+                                </span>
+                                <span
+                                    className="text-2xl md:text-4xl text-[#E0D4FC] opacity-80"
+                                    style={{ fontFamily: '"Pacifico", cursive' }}
+                                >
+                                    Presents
+                                </span>
                             </motion.div>
 
-                            <div className="flex justify-between w-48 text-[10px] font-mono text-teal-500/60 uppercase tracking-widest mt-1">
-                                <span>Init_Seq_09</span>
-                                <span className="animate-pulse">Loading...</span>
-                            </div>
+                            {/* Decorative Gold Line */}
+                            <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: "120%" }}
+                                transition={{ duration: 2, delay: 1, ease: "easeInOut" }}
+                                className="h-[1px] bg-gradient-to-r from-transparent via-[#ffd700] to-transparent mt-2 opacity-50"
+                            />
                         </div>
+
+                        {/* PRAJWALAN - The Main Reveal */}
+                        <motion.div
+                            initial={{ opacity: 0, letterSpacing: "1em", filter: "blur(10px)" }}
+                            animate={{ opacity: 1, letterSpacing: "0.4em", filter: "blur(0px)" }}
+                            transition={{ duration: 2.5, delay: 2.2, ease: "easeOut" }}
+                            className="relative group"
+                        >
+                            <h1
+                                className="text-5xl md:text-[8rem] font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-violet-100 to-violet-400 relative z-10 drop-shadow-[0_0_30px_rgba(139,92,246,0.5)]"
+                                style={{
+                                    fontFamily: '"Cinzel", serif',
+                                    textTransform: 'uppercase'
+                                }}
+                            >
+                                Prajwalan
+                            </h1>
+
+                            {/* Inner Glow Aura */}
+                            <motion.div
+                                className="absolute inset-0 blur-[60px] bg-violet-600/20 rounded-full"
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1.2 }}
+                                transition={{ duration: 3, delay: 2.5 }}
+                            />
+                        </motion.div>
+
                     </div>
                 </motion.div>
             )}

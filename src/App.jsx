@@ -4,11 +4,12 @@ import Navbar from './components/Navbar';
 import Preloader from './components/Preloader';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
-import { About, Domains, Gallery, Timeline, PastWinners, Prizes, Sponsors, FAQs } from './components/Sections';
+import { About, Domains, Gallery, Timeline, Modules, PastWinners, Prizes, Sponsors, FAQs } from './components/Sections';
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState('home');
+  const [introPlayed, setIntroPlayed] = useState(false);
 
   return (
     <>
@@ -22,15 +23,19 @@ function App() {
           <main>
             {view === 'home' && (
               <>
-                <Hero />
+                <Hero introPlayed={introPlayed} setIntroPlayed={setIntroPlayed} />
                 <About />
                 <Domains />
-                <Gallery />
                 <Timeline />
+                <Modules />
                 <PastWinners />
                 <Prizes />
                 <Sponsors />
               </>
+            )}
+
+            {view === 'gallery' && (
+              <Gallery />
             )}
 
             {view === 'faq' && (

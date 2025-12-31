@@ -1,4 +1,5 @@
 import React from 'react';
+import footerVideo from '../assets/footer_video.mp4';
 
 const Footer = () => {
     return (
@@ -13,7 +14,7 @@ const Footer = () => {
                     className="w-full h-full object-cover"
                 >
                     <source
-                        src="https://res.cloudinary.com/ddgbeprge/video/upload/v1767087516/Thunderstorm_Animation_Video_Generation_rbecf8.mp4"
+                        src={footerVideo}
                         type="video/mp4"
                     />
                     Your browser does not support the video tag.

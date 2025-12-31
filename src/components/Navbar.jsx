@@ -15,6 +15,7 @@ const Navbar = ({ setActiveView }) => {
     const navLinks = [
         { name: 'About', href: '#about' },
         { name: 'Timeline', href: '#timeline' },
+        { name: 'Gallery', href: '#gallery' },
         { name: 'FAQ', href: '#faqs' },
     ];
 
@@ -22,6 +23,9 @@ const Navbar = ({ setActiveView }) => {
         setIsOpen(false);
         if (link.name === 'FAQ') {
             setActiveView('faq');
+            window.scrollTo(0, 0);
+        } else if (link.name === 'Gallery') {
+            setActiveView('gallery');
             window.scrollTo(0, 0);
         } else {
             setActiveView('home');
@@ -41,7 +45,11 @@ const Navbar = ({ setActiveView }) => {
                     onClick={() => setActiveView('home')}
                     className="text-2xl font-black tracking-wider text-white glow-text font-orbitron flex items-center gap-2 focus:outline-none"
                 >
-                    <span className="text-violet-500 text-3xl">⚡</span> PRAJWALAN <span className="text-violet-400">2K26</span>
+                    <img
+                        src="https://res.cloudinary.com/dve78jcz0/image/upload/v1767212207/text-1766844263522_xdekd5.png"
+                        alt="Prajwalan Logo"
+                        className="h-12 w-auto object-contain filter brightness-0 invert"
+                    />
                 </button>
 
                 {/* Desktop Menu */}

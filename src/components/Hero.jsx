@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import heroBg from '../assets/hero_bg_final.png';
 
-const Hero = () => {
+const Hero = ({ introPlayed, setIntroPlayed }) => {
     // Parallax Motion Values
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -27,16 +26,47 @@ const Hero = () => {
         y.set(yPos);
     };
 
+    /* --- VIDEO LOGIC DISABLED ---
+    const [showVideo, setShowVideo] = React.useState(!introPlayed);
+
+    const handleVideoEnd = () => {
+        setShowVideo(false);
+        setIntroPlayed(true);
+    };
+    ------------------------------ */
+
     return (
         <section
             id="home"
             className="h-screen flex items-center justify-center relative z-10 overflow-hidden bg-bg-dark"
             onMouseMove={handleMouseMove}
         >
-            {/* Background Image */}
+            {/* Intro Video Overlay - COMMENTED OUT 
+            <motion.div
+                className="absolute inset-0 z-[5]"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: showVideo ? 1 : 0 }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                style={{ pointerEvents: showVideo ? 'auto' : 'none' }}
+            >
+                {showVideo && (
+                    <video
+                        autoPlay
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                        onEnded={handleVideoEnd}
+                    >
+                        <source src="https://res.cloudinary.com/dve78jcz0/video/upload/v1767213066/K_Violet_Thunderstorm_Animation_Video_m8m72x.mp4" type="video/mp4" />
+                    </video>
+                )}
+            </motion.div>
+            */}
+
+            {/* Background Image (Parallax) - Always present underneath */}
             <div className="absolute inset-0 z-0">
                 <motion.img
-                    src={heroBg}
+                    src="https://res.cloudinary.com/dve78jcz0/image/upload/v1767216295/unnamed_debyfk.jpg"
                     alt="Hero Background"
                     className="w-full h-full object-cover"
                     style={{
