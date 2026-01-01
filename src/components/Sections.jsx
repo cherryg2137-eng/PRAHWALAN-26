@@ -446,85 +446,166 @@ export const Gallery = () => {
     );
 };
 
-export const PastWinners = () => (
-    <Section id="past-winners" title="Past Champions">
-        <div className="max-w-6xl mx-auto">
-            <motion.p variants={itemVariants} className="text-center text-gray-400 mb-12 font-orbitron text-lg tracking-[0.2em] uppercase">Honoring the victors of the wasteland.</motion.p>
-            <div className="mb-0">
-                <motion.h3 variants={itemVariants} className="text-3xl font-bold text-center mb-16 text-violet-500 font-orbitron tracking-widest drop-shadow-[0_0_15px_rgba(139,92,246,0.4)]">LEGENDS OF 2K25</motion.h3>
+export const PastWinners = () => {
+    // Data for winners
+    const winners = [
+        {
+            place: 2,
+            title: "Trendsetters",
+            prize: "Silver",
+            img: imgAppDev,
+            gradient: "from-cyan-500/20 to-blue-600/5",
+            border: "border-cyan-500/30",
+            glow: "shadow-[0_0_40px_-10px_rgba(34,211,238,0.3)]",
+            text: "text-cyan-200",
+            delay: 0.2
+        },
+        {
+            place: 1,
+            title: "Innovators X",
+            prize: "Gold",
+            img: imgML,
+            gradient: "from-amber-500/20 to-orange-600/5",
+            border: "border-amber-500/40",
+            glow: "shadow-[0_0_60px_-10px_rgba(245,158,11,0.4)]",
+            text: "text-amber-200",
+            delay: 0,
+            scale: 1.1
+        },
+        {
+            place: 3,
+            title: "Dream Coders",
+            prize: "Bronze",
+            img: imgIoT,
+            gradient: "from-rose-500/20 to-pink-600/5",
+            border: "border-rose-500/30",
+            glow: "shadow-[0_0_40px_-10px_rgba(244,63,94,0.3)]",
+            text: "text-rose-200",
+            delay: 0.4
+        }
+    ];
 
-                {/* PODIUM LAYOUT - REFINED STRUCTURE */}
-                <div className="flex flex-col md:flex-row items-center md:items-end justify-center gap-6 mt-20 min-h-[550px] px-4">
+    return (
+        <section id="past-winners" className="py-32 bg-[#05010d] relative overflow-hidden flex flex-col items-center">
+            {/* Ambient Background Glows */}
+            <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-violet-600/20 rounded-full blur-[120px] -z-0 pointer-events-none"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] -z-0 pointer-events-none"></div>
 
-                    {/* 2nd Place (Left) */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="order-2 md:order-1 relative w-full md:w-[30%] bg-[#110a1f]/90 backdrop-blur-md border border-gray-600 rounded-2xl p-6 flex flex-col items-center h-[380px] justify-end pb-8 shadow-[0_0_30px_rgba(75,85,99,0.2)] group hover:-translate-y-2 transition-transform duration-500"
+            {/* Header */}
+            <div className="flex flex-col items-center mb-24 relative z-10 w-full">
+                <motion.h2
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 font-orbitron tracking-widest uppercase mb-4 drop-shadow-[0_0_20px_rgba(139,92,246,0.6)]"
+                >
+                    HALL OF LEGENDS
+                </motion.h2>
+                <div className="flex items-center gap-4">
+                    <div className="h-[2px] w-12 bg-violet-600/50"></div>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        className="text-center text-violet-200/60 font-rajdhani text-sm tracking-[0.3em] uppercase max-w-2xl font-light"
                     >
-                        {/* Avatar Ring */}
-                        <div className="absolute top-[-40px] left-1/2 -translate-x-1/2 w-28 h-28 rounded-full border-4 border-gray-400 p-1 bg-[#110a1f] shadow-lg z-20">
-                            <img src={imgAppDev} alt="Avatar" className="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-                        </div>
-                        <div className="text-gray-400 font-orbitron tracking-widest text-sm font-bold mb-1">2ND PLACE</div>
-                        <h4 className="text-2xl font-black text-white font-orbitron mb-2">Trendsetters</h4>
-                        <div className="h-[1px] w-12 bg-gray-500 mb-4"></div>
-                        <div className="text-4xl text-gray-500/20 font-black font-orbitron absolute bottom-4">SILVER</div>
-                    </motion.div>
+                        Honoring the visionaries who shaped the future.
+                    </motion.p>
+                    <div className="h-[2px] w-12 bg-violet-600/50"></div>
+                </div>
+            </div>
 
-                    {/* 1st Place (Center - DOMINANT) */}
+            {/* Ethereal Floating Grid */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full min-h-[500px]">
+                {winners.map((winner, idx) => (
                     <motion.div
+                        key={idx}
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="order-1 md:order-2 relative w-full md:w-[38%] bg-gradient-to-b from-[#1a1033] to-[#0f0a1f] border-2 border-yellow-500 rounded-t-3xl rounded-b-xl p-8 flex flex-col items-center h-[480px] justify-end pb-12 z-30 shadow-[0_0_80px_rgba(234,179,8,0.3)] hover:scale-105 transition-transform duration-500"
+                        transition={{ delay: winner.delay, duration: 0.8, ease: "easeOut" }}
+                        className={`relative group ${winner.place === 1 ? 'md:-mt-12 z-20' : 'z-10'}`}
                     >
-                        {/* Crown */}
-                        <div className="absolute -top-16 animate-bounce drop-shadow-[0_0_20px_rgba(234,179,8,0.8)]">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5ZM19 19C19 19.5523 18.5523 20 18 20H6C5.44772 20 5 19.5523 5 19V17H19V19Z" fill="#FACC15" />
-                            </svg>
-                        </div>
+                        {/* Floating Animation Wrapper */}
+                        <motion.div
+                            animate={{ y: [0, -15, 0] }}
+                            transition={{
+                                duration: 4 + idx,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: idx * 0.5
+                            }}
+                            className="relative"
+                        >
+                            {/* Glass Card */}
+                            <div className={`
+                                    relative w-full md:w-[320px] 
+                                    ${winner.place === 1 ? 'h-[460px]' : 'h-[380px]'}
+                                    rounded-[2.5rem] overflow-hidden backdrop-blur-3xl
+                                    bg-gradient-to-b ${winner.gradient}
+                                    border ${winner.border}
+                                    ${winner.glow}
+                                    transition-all duration-500 group-hover:shadow-[0_0_80px_-20px_rgba(255,255,255,0.2)]
+                                `}>
+                                {/* Noise Texture Overlay */}
+                                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
 
-                        {/* Avatar Ring */}
-                        <div className="absolute top-[-60px] left-1/2 -translate-x-1/2 w-40 h-40 rounded-full border-[6px] border-yellow-500 p-1 bg-[#1a1033] shadow-[0_0_40px_rgba(234,179,8,0.4)] z-30">
-                            <img src={imgML} alt="Avatar" className="w-full h-full rounded-full object-cover" />
-                        </div>
+                                {/* Inner Light Reflection */}
+                                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                                <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
-                        <div className="mt-12 text-yellow-400 font-orbitron tracking-[0.3em] text-lg font-bold mb-2 drop-shadow-md">CHAMPIONS</div>
-                        <h4 className="text-5xl font-black text-white font-orbitron mb-2 text-center">Innovators X</h4>
-                        <div className="h-[2px] w-24 bg-yellow-500 mb-6 shadow-[0_0_10px_#eab308]"></div>
-                        <p className="text-violet-200 font-orbitron text-lg bg-violet-500/10 px-6 py-2 rounded-full border border-violet-500/30 backdrop-blur-sm">DeepLearn Platform</p>
-                        <div className="text-6xl text-yellow-500/10 font-black font-orbitron absolute bottom-4">GOLD</div>
+                                {/* Content Container */}
+                                <div className="absolute inset-0 flex flex-col items-center p-8">
+
+                                    {/* Rank Badge (Floating) */}
+                                    <div className="absolute top-6 right-6">
+                                        <div className={`w-10 h-10 rounded-full flex items-center justify-center border border-white/10 bg-white/5 backdrop-blur-md shadow-inner`}>
+                                            <span className={`font-orbitron font-bold text-sm ${winner.text}`}>#{winner.place}</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Avatar with Ring */}
+                                    <div className="relative mt-8 mb-6 group-hover:scale-105 transition-transform duration-700 ease-out">
+                                        {/* Rotating Ring */}
+                                        <div className={`absolute -inset-4 rounded-full border border-white/5 border-t-${winner.text.split('-')[1]}-400/50 animate-[spin_10s_linear_infinite]`}></div>
+                                        <div className={`absolute -inset-1 rounded-full bg-gradient-to-tr ${winner.gradient} blur-md opacity-40`}></div>
+                                        <img
+                                            src={winner.img}
+                                            alt={winner.title}
+                                            className="w-32 h-32 rounded-full object-cover relative z-10 border-2 border-white/10 shadow-2xl"
+                                        />
+                                    </div>
+
+                                    {/* Text Content */}
+                                    <div className="text-center mt-auto mb-8 relative z-10">
+                                        <h4 className="text-3xl font-bold text-white font-orbitron mb-2 tracking-wide drop-shadow-lg">
+                                            {winner.title}
+                                        </h4>
+                                        <div className="flex items-center justify-center gap-2 mb-4">
+                                            <span className={`h-px w-6 bg-current opacity-50 ${winner.text}`}></span>
+                                            <span className={`font-rajdhani uppercase tracking-[0.2em] text-sm font-semibold ${winner.text}`}>
+                                                {winner.prize}
+                                            </span>
+                                            <span className={`h-px w-6 bg-current opacity-50 ${winner.text}`}></span>
+                                        </div>
+                                        <p className="text-white/40 font-rajdhani text-xs tracking-wider">
+                                            PROJECT: {winner.place === 1 ? 'SENTINEL AI' : winner.place === 2 ? 'NOVA FINANCE' : 'ECHO HEALTH'}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Hover Interactive Layer */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                            </div>
+                        </motion.div>
                     </motion.div>
-
-                    {/* 3rd Place (Right) */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4 }}
-                        className="order-3 md:order-3 relative w-full md:w-[30%] bg-[#110a1f]/90 backdrop-blur-md border border-orange-600 rounded-2xl p-6 flex flex-col items-center h-[340px] justify-end pb-8 shadow-[0_0_30px_rgba(234,88,12,0.2)] group hover:-translate-y-2 transition-transform duration-500"
-                    >
-                        {/* Avatar Ring */}
-                        <div className="absolute top-[-40px] left-1/2 -translate-x-1/2 w-28 h-28 rounded-full border-4 border-orange-600 p-1 bg-[#110a1f] shadow-lg z-20">
-                            <img src={imgIoT} alt="Avatar" className="w-full h-full rounded-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-                        </div>
-                        <div className="text-orange-500 font-orbitron tracking-widest text-sm font-bold mb-1">3RD PLACE</div>
-                        <h4 className="text-2xl font-black text-white font-orbitron mb-2">Dream Coders</h4>
-                        <div className="h-[1px] w-12 bg-orange-600 mb-4"></div>
-                        <div className="text-4xl text-orange-600/20 font-black font-orbitron absolute bottom-4">BRONZE</div>
-                    </motion.div>
-
-                </div>
+                ))}
             </div>
-        </div>
-    </Section>
-);
 
+        </section >
+    );
+};
 
+// --- TIMELINE COMPONENT ---
 export const Timeline = () => {
     const events = [
         {
@@ -680,260 +761,121 @@ export const Timeline = () => {
 
 // --- PRIZES COMPONENT ---
 export const Prizes = () => {
-    // Cyberpunk HUD Shape:
-    // Asymmetric cuts:
-    // TL: small angle, TR: angle, BR: large cut, BL: angle
-    const cardClipPath = "polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 40px), calc(100% - 40px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px)";
-
-    // Sparkle Component
-    const Sparkles = () => (
-        <motion.div
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="absolute -top-6 -right-6 pointer-events-none z-30"
-        >
-            <motion.div
-                animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-                className="absolute top-0 right-0 text-[#FFD700] text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]"
-            >
-                ✦
-            </motion.div>
-            <motion.div
-                animate={{ scale: [0, 1, 0], rotate: [45, 0, 45] }}
-                transition={{ repeat: Infinity, duration: 1.5, delay: 0.2 }}
-                className="absolute top-4 -left-4 text-[#FFC107] text-sm drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]"
-            >
-                ✨
-            </motion.div>
-        </motion.div>
-    );
+    const bounties = [
+        {
+            id: '01',
+            rank: 'Runner Up',
+            amount: '15,000',
+            currency: 'INR',
+            color: 'text-cyan-400',
+            bg: 'bg-cyan-500/10',
+            border: 'border-cyan-500/20',
+            icon: "bi-shield-check",
+            desc: "Outstanding execution and technical prowess."
+        },
+        {
+            id: '00',
+            rank: 'Champion',
+            amount: '20,000',
+            currency: 'INR',
+            color: 'text-amber-400',
+            bg: 'bg-amber-500/10',
+            border: 'border-amber-500/30',
+            icon: "bi-trophy",
+            desc: "The ultimate innovation that redefines boundaries.",
+            featured: true
+        },
+        {
+            id: '02',
+            rank: '2nd Runner Up',
+            amount: '10,000',
+            currency: 'INR',
+            color: 'text-rose-400',
+            bg: 'bg-rose-500/10',
+            border: 'border-rose-500/20',
+            icon: "bi-award",
+            desc: "Exceptional creativity and problem solving."
+        }
+    ];
 
     return (
-        <Section id="prizes" title="" className="bg-bg-dark relative overflow-hidden py-32">
-            {/* Cinematic Dark Background */}
-            <div className="absolute inset-0 bg-black pointer-events-none"></div>
+        <section id="prizes" className="py-32 bg-bg-dark relative overflow-hidden flex flex-col items-center">
 
-            {/* Golden Eclipse CSS */}
-            <style>{`
-                @keyframes rotateBorder {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                }
-                .golden-border-wrapper {
-                    position: relative;
-                    background: transparent;
-                    z-index: 1;
-                    /* Clean border base if animation is off/loading */
-                    border: 0px solid transparent;
-                }
-                /* Effect A: Infinity Gold Moving Border */
-                .golden-border-wrapper::before {
-                    content: "";
-                    position: absolute;
-                    inset: -150%;
-                    width: 400%;
-                    height: 400%;
-                    background: conic-gradient(transparent 20%, #FFD700, transparent 90%);
-                    top: -150%;
-                    left: -150%;
-                    z-index: -1;
-                    opacity: 0;
-                    transition: opacity 0.5s ease;
-                    pointer-events: none;
-                }
-                .group:hover .golden-border-wrapper::before {
-                    animation: rotateBorder 4s linear infinite;
-                    opacity: 1;
-                }
-                /* Static gold border when not hovering (optional, but requested 'Change borders to Electric Gold') */
-                .golden-border-wrapper::after {
-                    content: "";
-                    position: absolute;
-                    inset: 0;
-                    background: #FFD700;
-                    z-index: -2;
-                    opacity: 0.3; /* Subtle static border */
-                }
-                .group:hover .golden-border-wrapper::after {
-                    opacity: 0; /* Hide static when spinning starts, or keep it as base */
-                }
+            {/* Background Atmosphere */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.1),transparent_70%)] pointer-events-none"></div>
 
-                /* Effect B: Nebula Glow */
-                .nebula-glow {
-                    transition: box-shadow 0.5s ease;
-                }
-                .group:hover .nebula-glow {
-                    box-shadow: 0px 0px 30px rgba(138, 43, 226, 0.4), 0px 0px 15px rgba(255, 215, 0, 0.2);
-                }
-
-                /* Gradient Text Class */
-                .text-gold-gradient {
-                    background: linear-gradient(to bottom, #FFF8DC, #FFC107);
-                    -webkit-background-clip: text;
-                    background-clip: text;
-                    color: transparent;
-                }
-            `}</style>
-
-            <div className="flex flex-col items-center justify-center w-full max-w-7xl mx-auto px-4 relative z-10">
-
-                {/* Header */}
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.1 }}
-                    variants={sectionVariants}
-                    className="flex items-center justify-center mb-20 relative"
+            {/* Header */}
+            <div className="flex flex-col items-center mb-24 relative z-10">
+                <motion.h2
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-800 font-orbitron tracking-widest uppercase mb-4 drop-shadow-[0_0_20px_rgba(139,92,246,0.6)]"
                 >
-                    <div className="hidden md:block text-[#FFD700] text-6xl md:text-8xl font-black font-orbitron mr-6 drop-shadow-[0_0_15px_rgba(255,215,0,0.4)]">&lt;</div>
-                    <div className="relative px-12 py-4 bg-gradient-to-r from-transparent via-[#FFD700]/10 to-transparent border-y border-[#FFD700]/30 transform skew-x-[-10deg]">
-                        <h2 className="relative text-5xl md:text-7xl font-black font-orbitron tracking-[0.1em] text-[#FFD700] uppercase drop-shadow-[0_0_25px_rgba(255,215,0,0.5)] z-10 skew-x-[10deg]">
-                            PRIZES
-                        </h2>
-                    </div>
-                    <div className="hidden md:block text-[#FFD700] text-6xl md:text-8xl font-black font-orbitron ml-6 drop-shadow-[0_0_15px_rgba(255,215,0,0.4)]">&gt;</div>
-                </motion.div>
-
-
-                {/* 3-Card Podium Container */}
-                <motion.div variants={itemVariants} className="w-full flex flex-col md:flex-row items-end justify-center gap-8 md:gap-12 relative">
-
-                    {/* --- LEFT CARD: 2nd Prize --- */}
-                    <motion.div whileHover={{ y: -8, scale: 1.02 }} className="w-full md:w-[30%] relative group order-2 md:order-1 nebula-glow">
-                        {/* Note: clip-path on container cuts shadow. Shadow must be on an wrapper or we accept the internal glow.
-                             User rule: "Implement Effect B ... box-shadow".
-                             If clip-path is here, box-shadow won't show outside.
-                             Let's apply nebula-glow to a div BEHIND?
-                             Or rely on the fact that existing code had clipPath on the inner divs.
-                             I will keep the shadow on the *motion.div* and REMOVE clipPath from motion.div if it wasn't there.
-                             Original did NOT have clipPath on motion.div. I will revert that specific add if I did it.
-                             Wait, original: <motion.div ... className="... group ...">
-                             No clipPath on parent.
-                         */}
-
-                        {/* Top-Left Arrow Tab - Color: Electric Gold #FFD700 */}
-                        <div className="absolute -top-3 -left-1 bg-[#FFD700] text-[#160826] font-black font-orbitron text-[10px] px-4 py-1 skew-x-[-15deg] z-20 shadow-[0_0_15px_rgba(255,215,0,0.5)] tracking-widest uppercase rounded-sm border-none">
-                            2ND PRIZE
-                        </div>
-
-                        {/* Bottom Right "Italic Rectangle" - Color: Glassy Gold */}
-                        <div className="absolute -bottom-2 -right-1 w-8 h-2 bg-[rgba(255,215,0,0.4)] skew-x-[-20deg] z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] border border-[#FFD700]/50"></div>
-
-                        {/* Gold Border Wrapper with Animation */}
-                        <div className="p-[2px] golden-border-wrapper relative transition-all duration-300" style={{ clipPath: cardClipPath }}>
-
-                            <div
-                                className="relative h-[240px] w-full bg-[#160826] transition-all duration-500"
-                                style={{ clipPath: cardClipPath }}
-                            >
-                                {/* Default: Deep Royal Violet Background */}
-                                <div className="absolute inset-0 bg-[#160826]"></div>
-
-                                {/* Hover Only: Nice Soft Glow Bloom (Gold) */}
-                                <div className="absolute inset-0 bg-[#FFD700] opacity-0 group-hover:opacity-10 blur-[60px] transition-opacity duration-500"></div>
-
-                                {/* Inner Content - Top Padded & Centered */}
-                                <div className="absolute inset-0 flex flex-col justify-center items-center text-center pt-20 px-6 pb-6 z-20 relative">
-                                    <h3 className="text-5xl font-black font-orbitron drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] mb-1 text-gold-gradient transition-colors duration-300 relative inline-block">
-                                        <span className="text-[#FFD700] mr-1">₹</span>15,000
-                                        <Sparkles />
-                                    </h3>
-                                    <div className="h-[1px] w-12 bg-white/30 group-hover:bg-[#FFD700]/80 mb-2 transition-colors duration-300"></div>
-                                    <p className="text-[#E0D4FC] font-orbitron tracking-[0.2em] text-[10px] uppercase font-bold transition-colors duration-300">
-                                        RUNNER UP
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-
-                    {/* --- CENTER CARD: Grand Prize (Largest) --- */}
-                    <motion.div whileHover={{ y: -12, scale: 1.05 }} className="w-full md:w-[38%] relative group order-1 md:order-2 z-10 -mt-6 md:-mt-0 md:mb-6 nebula-glow">
-                        {/* Top-Left Arrow Tab */}
-                        <div className="absolute -top-4 -left-2 bg-[#FFD700] text-[#160826] font-black font-orbitron text-xs px-6 py-1.5 skew-x-[-15deg] z-30 shadow-[0_0_20px_rgba(255,215,0,0.6)] tracking-widest uppercase rounded-sm border-none">
-                            WINNER
-                        </div>
-
-                        {/* Bottom Right "Italic Rectangle" */}
-                        <div className="absolute -bottom-3 -right-2 w-12 h-3 bg-[rgba(255,215,0,0.4)] skew-x-[-20deg] z-20 shadow-[0_0_15px_rgba(255,215,0,0.8)] border border-[#FFD700]/50"></div>
-
-                        {/* Gold Border Wrapper with Animation */}
-                        <div className="p-[2px] golden-border-wrapper relative transition-all duration-300" style={{ clipPath: cardClipPath }}>
-
-                            <div
-                                className="relative h-[300px] w-full bg-[#160826] transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(255,215,0,0.2)]"
-                                style={{ clipPath: cardClipPath }}
-                            >
-                                {/* Default: Deep Royal Violet Background */}
-                                <div className="absolute inset-0 bg-[#160826]"></div>
-
-                                {/* Hover Only: Nice Soft Glow Bloom */}
-                                <div className="absolute inset-0 bg-[#FFD700] opacity-0 group-hover:opacity-15 blur-[80px] transition-opacity duration-500"></div>
-
-                                {/* Inner Vignette */}
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.5)_100%)] group-hover:opacity-50 transition-opacity duration-300"></div>
-
-                                {/* Content - Top Padded & Centered */}
-                                <div className="absolute inset-0 flex flex-col justify-center items-center text-center pt-14 px-6 pb-6 z-20 relative">
-                                    <h3 className="text-7xl md:text-8xl font-black font-orbitron drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)] mb-2 text-gold-gradient transition-colors duration-300 relative inline-block">
-                                        <span className="text-[#FFD700] mr-2">₹</span>20,000
-                                        <Sparkles />
-                                    </h3>
-                                    <div className="h-[2px] w-24 bg-white/50 group-hover:bg-[#FFD700] mb-3 shadow-[0_0_10px_white] transition-colors duration-300"></div>
-                                    <p className="text-[#E0D4FC] font-orbitron tracking-[0.2em] text-xs md:text-sm uppercase font-bold text-shadow-sm transition-colors duration-300">
-                                        GRAND PRIZE WINNER
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-
-                    {/* --- RIGHT CARD: 3rd Prize --- */}
-                    <motion.div whileHover={{ y: -8, scale: 1.02 }} className="w-full md:w-[30%] relative group order-3 nebula-glow">
-                        {/* Top-Left Arrow Tab */}
-                        <div className="absolute -top-3 -left-1 bg-[#FFD700] text-[#160826] font-black font-orbitron text-[10px] px-4 py-1 skew-x-[-15deg] z-20 shadow-[0_0_15px_rgba(255,215,0,0.5)] tracking-widest uppercase rounded-sm border-none">
-                            3RD PRIZE
-                        </div>
-
-                        {/* Bottom Right "Italic Rectangle" */}
-                        <div className="absolute -bottom-2 -right-1 w-8 h-2 bg-[rgba(255,215,0,0.4)] skew-x-[-20deg] z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] border border-[#FFD700]/50"></div>
-
-                        {/* Gold Border Wrapper with Animation */}
-                        <div className="p-[2px] golden-border-wrapper relative transition-all duration-300" style={{ clipPath: cardClipPath }}>
-
-                            <div
-                                className="relative h-[240px] w-full bg-[#160826] transition-all duration-500"
-                                style={{ clipPath: cardClipPath }}
-                            >
-                                {/* Default: Deep Royal Violet Background */}
-                                <div className="absolute inset-0 bg-[#160826]"></div>
-
-                                {/* Hover Only: Nice Soft Glow Bloom */}
-                                <div className="absolute inset-0 bg-[#FFD700] opacity-0 group-hover:opacity-10 blur-[60px] transition-opacity duration-500"></div>
-
-                                {/* Content - Top Padded & Centered */}
-                                <div className="absolute inset-0 flex flex-col justify-center items-center text-center pt-20 px-6 pb-6 z-20 relative">
-                                    <h3 className="text-5xl font-black font-orbitron drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] mb-1 text-gold-gradient transition-colors duration-300 relative inline-block">
-                                        <span className="text-[#FFD700] mr-1">₹</span>10,000
-                                        <Sparkles />
-                                    </h3>
-                                    <div className="h-[1px] w-12 bg-white/30 group-hover:bg-[#FFD700]/80 mb-2 transition-colors duration-300"></div>
-                                    <p className="text-[#E0D4FC] font-orbitron tracking-[0.2em] text-[10px] uppercase font-bold transition-colors duration-300">
-                                        2ND RUNNER UP
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                </motion.div>
-
+                    PRIZES
+                </motion.h2>
+                <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: 160 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="h-1.5 bg-violet-600 skew-x-[-20deg] shadow-[0_0_15px_#7c3aed]"
+                ></motion.div>
             </div>
-        </Section>
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {bounties.map((bounty, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1, duration: 0.5 }}
+                            whileHover={{ y: -10 }}
+                            className={`
+                                relative group p-px overflow-hidden clip-path-polygon
+                                ${bounty.featured ? 'md:-mt-8 md:mb-8 z-20' : 'z-10'}
+                            `}
+                            style={{ clipPath: "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)" }}
+                        >
+                            {/* Animated Gradient Border using CSS mask or internal divs */}
+                            <div className={`absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50`}></div>
+                            <div className={`absolute inset-0 bg-gradient-to-b ${bounty.bg} opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
+
+                            {/* Glass Content */}
+                            <div className="relative bg-[#0F0A1F]/90 backdrop-blur-xl h-full p-8 flex flex-col items-center text-center border border-white/5 group-hover:border-white/10 transition-colors clip-path-polygon" style={{ clipPath: "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)" }}>
+
+                                {/* Top Icon Glow */}
+                                <div className={`w-16 h-16 ${bounty.bg} flex items-center justify-center mb-6 relative group-hover:scale-110 transition-transform duration-500 clip-path-polygon`} style={{ clipPath: "polygon(20% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%, 0% 20%)" }}>
+                                    <i className={`${bounty.icon} ${bounty.color} text-3xl drop-shadow-md`}></i>
+                                    <div className={`absolute inset-0 ${bounty.bg} blur-xl opacity-50`}></div>
+                                </div>
+
+                                <h3 className="text-white font-orbitron text-2xl font-bold tracking-wide mb-2">
+                                    {bounty.rank}
+                                </h3>
+                                <p className="text-gray-400 font-rajdhani text-sm mb-8 max-w-[200px] leading-relaxed">
+                                    {bounty.desc}
+                                </p>
+
+                                {/* Prize Amount */}
+                                <div className="mt-auto relative">
+                                    <span className={`block text-5xl md:text-6xl font-black font-orbitron ${bounty.color} tracking-tighter drop-shadow-lg scale-100 group-hover:scale-110 transition-transform duration-300`}>
+                                        {bounty.amount}
+                                    </span>
+                                    <span className="block text-white/30 font-bold tracking-[0.3em] text-xs mt-2 font-orbitron">
+                                        {bounty.currency}
+                                    </span>
+                                </div>
+
+                                {/* Bottom Decorative Line */}
+                                <div className={`w-1/2 h-1 rounded-full ${bounty.bg.replace('/10', '/50')} mt-8`}></div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 };
 
@@ -1304,7 +1246,7 @@ export const Modules = () => {
                     className="flex flex-col items-center justify-center mb-24 relative"
                 >
                     <h2 className="text-4xl md:text-6xl font-black font-orbitron tracking-[0.1em] text-transparent bg-clip-text bg-gradient-to-b from-white to-purple-400 drop-shadow-[0_0_20px_rgba(168,85,247,0.5)] z-10">
-                        MODULES
+                        DOMAINS
                     </h2>
                     {/* Animated Underline */}
                     <motion.div

@@ -58,15 +58,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                {/* Copyright */}
-                <div className="w-full text-center border-t border-white/10 pt-6 mt-4">
-                    <p className="text-[10px] md:text-xs text-gray-400 font-rajdhani tracking-widest opacity-60 uppercase">
-                        Copyright &copy; {new Date().getFullYear()} | All rights reserved
-                    </p>
-                    <p className="text-[10px] md:text-xs text-violet-400/60 font-rajdhani tracking-widest mt-1 uppercase">
-                        Made in collaboration with ML Club NIT Silchar
-                    </p>
-                </div>
+
             </div>
         </footer>
     );
