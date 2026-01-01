@@ -51,10 +51,12 @@ const Preloader = ({ onLoadingComplete }) => {
             {!loaded && (
                 <motion.div
                     className="fixed inset-0 z-[100] flex items-center justify-center bg-black overflow-hidden"
-                    initial={{ opacity: 1 }}
+                    entry={{ opacity: 1 }}
                     exit={{
                         opacity: 0,
-                        transition: { duration: 1.5, ease: "easeInOut" }
+                        scale: 1.1,
+                        filter: "blur(20px)",
+                        transition: { duration: 1.2, ease: "easeInOut" }
                     }}
                 >
                     {/* Background Layers */}

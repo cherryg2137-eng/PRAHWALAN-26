@@ -486,7 +486,7 @@ export const PastWinners = () => {
     ];
 
     return (
-        <section id="past-winners" className="py-32 bg-[#05010d] relative overflow-hidden flex flex-col items-center">
+        <section id="past-winners" className="py-16 md:py-32 bg-[#05010d] relative overflow-hidden flex flex-col items-center">
             {/* Ambient Background Glows */}
             <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-violet-600/20 rounded-full blur-[120px] -z-0 pointer-events-none"></div>
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] -z-0 pointer-events-none"></div>
@@ -799,7 +799,7 @@ export const Prizes = () => {
     ];
 
     return (
-        <section id="prizes" className="py-32 bg-bg-dark relative overflow-hidden flex flex-col items-center">
+        <section id="prizes" className="py-16 md:py-32 bg-bg-dark relative overflow-hidden flex flex-col items-center">
 
             {/* Background Atmosphere */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.1),transparent_70%)] pointer-events-none"></div>
@@ -1257,8 +1257,8 @@ export const Modules = () => {
                     />
                 </motion.div>
 
-                {/* Organic Dotted Map */}
-                <div className="relative w-full h-[600px] md:h-[700px]">
+                {/* Organic Dotted Map (Desktop Only) */}
+                <div className="hidden md:block relative w-full h-[600px] md:h-[700px]">
                     {modules.map((mod) => (
                         <motion.div
                             key={mod.id}
@@ -1353,6 +1353,53 @@ export const Modules = () => {
                                     )}
                                 </div>
 
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* --- MOBILE LAYOUT (Grid) --- */}
+                <div className="grid grid-cols-1 gap-6 md:hidden w-full relative z-20 pb-12">
+                    {modules.map((mod) => (
+                        <motion.div
+                            key={mod.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: mod.id * 0.1 }}
+                            className="w-full"
+                        >
+                            <div className="relative bg-[#0F0A1F]/90 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-lg">
+                                {/* Image Header */}
+                                <div className="h-40 w-full relative overflow-hidden">
+                                    <img
+                                        src={mod.img}
+                                        alt={mod.title}
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F0A1F] to-transparent opacity-90"></div>
+                                </div>
+
+                                {/* Content */}
+                                <div className="p-6 relative -mt-8">
+                                    <div className="absolute -top-6 right-6 w-12 h-12 bg-black rounded-full border border-violet-500/50 flex items-center justify-center shadow-[0_0_15px_#a78bfa]">
+                                        <i className="bi bi-cpu text-violet-300"></i>
+                                    </div>
+
+                                    <h3 className="text-xl font-bold font-orbitron text-amber-400 mb-2 tracking-wide">
+                                        {mod.title}
+                                    </h3>
+                                    <p className="text-sm text-gray-400 font-rajdhani leading-relaxed mb-4">
+                                        {mod.desc}
+                                    </p>
+
+                                    <ul className="flex flex-wrap gap-2">
+                                        {mod.points && mod.points.map((point, i) => (
+                                            <li key={i} className="text-[10px] uppercase font-bold tracking-wider text-violet-300 bg-violet-900/30 px-2 py-1 rounded">
+                                                {point}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         </motion.div>
                     ))}

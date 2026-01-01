@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Background from './components/Background';
 import Navbar from './components/Navbar';
 import Preloader from './components/Preloader';
@@ -16,7 +17,12 @@ function App() {
       <Preloader onLoadingComplete={() => setLoading(false)} />
 
       {!loading && (
-        <div className="relative min-h-screen text-white selection:bg-cyan-500 selection:text-black">
+        <motion.div
+          initial={{ opacity: 0, y: 0 }} // Keep y:0 to prevent layout shifts, handled by scale/filter
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="relative min-h-screen text-white selection:bg-cyan-500 selection:text-black"
+        >
           <Background />
           <Navbar setActiveView={setView} />
 
@@ -44,7 +50,7 @@ function App() {
           </main>
 
           <Footer />
-        </div>
+        </motion.div>
       )}
     </>
   );
