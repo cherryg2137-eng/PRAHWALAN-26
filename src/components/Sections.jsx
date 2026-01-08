@@ -1523,18 +1523,18 @@ export const Modules = () => {
                 </div>
 
                 {/* --- MOBILE LAYOUT (Grid) --- */}
-                <div className="grid grid-cols-1 gap-6 md:hidden w-full relative z-20 pb-12">
+                <div className="grid grid-cols-1 gap-6 md:hidden w-full relative z-20 pb-12 px-4">
                     {modules.map((mod) => (
                         <motion.div
                             key={mod.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: mod.id * 0.1 }}
-                            className={`w-full ${mod.title === 'Cyber Security' ? 'mt-[50px]' : ''} ${mod.title === 'Machine Learning' ? 'pl-[50px]' : ''}`}
+                            className="w-full"
                         >
-                            <div className="relative bg-[#0F0A1F]/90 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-lg">
+                            <div className="relative bg-[#0F0A1F]/90 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-lg h-full max-h-[420px]">
                                 {/* Image Header */}
-                                <div className="h-40 w-full relative overflow-hidden">
+                                <div className="h-36 w-full relative overflow-hidden flex-shrink-0">
                                     <img
                                         src={mod.img}
                                         alt={mod.title}
@@ -1544,15 +1544,15 @@ export const Modules = () => {
                                 </div>
 
                                 {/* Content */}
-                                <div className="p-6 relative -mt-8">
-                                    <div className="absolute -top-6 right-6 w-12 h-12 bg-black rounded-full border border-violet-500/50 flex items-center justify-center shadow-[0_0_15px_#a78bfa]">
+                                <div className="p-5 relative -mt-6 flex flex-col">
+                                    <div className="absolute -top-8 right-5 w-12 h-12 bg-black rounded-full border border-violet-500/50 flex items-center justify-center shadow-[0_0_15px_#a78bfa]">
                                         <i className="bi bi-cpu text-violet-300"></i>
                                     </div>
 
-                                    <h3 className="text-xl font-bold font-orbitron text-amber-400 mb-2 tracking-wide">
+                                    <h3 className="text-lg font-bold font-orbitron text-amber-400 mb-2 tracking-wide">
                                         {mod.title}
                                     </h3>
-                                    <p className="text-sm text-violet-300 font-sans leading-relaxed mb-4 text-justify tracking-wide">
+                                    <p className="text-xs text-violet-300 font-sans leading-relaxed line-clamp-6 tracking-wide overflow-hidden">
                                         {mod.desc}
                                     </p>
                                 </div>
