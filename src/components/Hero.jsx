@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import heroBg from '../assets/hero_bg_purple.jpg';
+
+const heroBg = 'https://res.cloudinary.com/dtvplbrns/image/upload/v1767844431/hero_bg_purple_jpbftn.jpg';
 
 const Hero = ({ introPlayed, setIntroPlayed }) => {
     // Parallax Motion Values

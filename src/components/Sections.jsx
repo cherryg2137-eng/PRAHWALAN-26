@@ -656,11 +656,68 @@ export const Timeline = () => {
             {/* Vertical Rhombus Stack Layout */}
             <div className="w-full max-w-5xl px-4 relative flex flex-col items-center gap-24">
 
-                {/* Scroll-Linked Vertical Line */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-violet-900/30 -translate-x-1/2 z-0">
+                {/* Scroll-Linked Vertical Line - Enhanced with Glow & Lightning */}
+                <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 z-0">
+                    {/* Outer Glow Layer 1 - Wide Soft Glow */}
                     <motion.div
-                        className="w-full bg-violet-500 origin-top shadow-[0_0_20px_#8b5cf6]"
+                        className="absolute left-1/2 -translate-x-1/2 w-8 bg-violet-500/10 blur-xl origin-top"
                         style={{ scaleY, height: "100%" }}
+                        animate={{
+                            opacity: [0.3, 0.6, 0.3],
+                        }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+
+                    {/* Outer Glow Layer 2 - Medium Glow */}
+                    <motion.div
+                        className="absolute left-1/2 -translate-x-1/2 w-4 bg-violet-400/20 blur-lg origin-top"
+                        style={{ scaleY, height: "100%" }}
+                        animate={{
+                            opacity: [0.4, 0.8, 0.4],
+                        }}
+                        transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.5
+                        }}
+                    />
+
+                    {/* Core Line with Electric Shimmer */}
+                    <motion.div
+                        className="absolute left-1/2 -translate-x-1/2 w-1 bg-violet-500/60 origin-top shadow-[0_0_30px_#8b5cf6,0_0_60px_#8b5cf6]"
+                        style={{ scaleY, height: "100%" }}
+                        animate={{
+                            boxShadow: [
+                                "0 0 30px #8b5cf6, 0 0 60px #8b5cf6",
+                                "0 0 40px #a78bfa, 0 0 80px #a78bfa",
+                                "0 0 30px #8b5cf6, 0 0 60px #8b5cf6"
+                            ],
+                        }}
+                        transition={{
+                            duration: 2.5,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+
+                    {/* Lightning Flash Effect - Periodic */}
+                    <motion.div
+                        className="absolute left-1/2 -translate-x-1/2 w-2 bg-white origin-top"
+                        style={{ scaleY, height: "100%" }}
+                        animate={{
+                            opacity: [0, 0, 0, 0.8, 0, 0, 0, 0],
+                            scaleX: [1, 1, 1, 1.5, 1, 1, 1, 1]
+                        }}
+                        transition={{
+                            duration: 4,
+                            repeat: Infinity,
+                            times: [0, 0.45, 0.48, 0.5, 0.52, 0.55, 0.6, 1]
+                        }}
                     />
                 </div>
 
@@ -682,6 +739,9 @@ export const Timeline = () => {
                             whileHover={{ scale: 1.1 }}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                         >
+                            {/* Line Mask - Creates dark area behind rhombus */}
+                            <div className="absolute inset-0 scale-150 bg-[#05010d] rounded-full z-[-1]"></div>
+
                             {/* Outer Glow Ring */}
                             <div className="absolute inset-0 bg-violet-500 blur-2xl opacity-20 group-hover:opacity-60 transition-opacity duration-500"></div>
 
@@ -709,6 +769,9 @@ export const Timeline = () => {
                             whileHover={{ y: -5 }}
                             transition={{ type: "spring", stiffness: 300 }}
                         >
+                            {/* Line Mask Behind Card */}
+                            <div className="absolute inset-0 scale-110 bg-[#05010d] z-[-1] rounded-lg"></div>
+
                             <div
                                 className="group/card relative p-6 bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-300 hover:bg-violet-900/20 hover:border-violet-400/50 clip-path-polygon w-full shadow-lg"
                                 style={{ clipPath: "polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%)" }}
