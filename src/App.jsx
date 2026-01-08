@@ -57,7 +57,7 @@ function App() {
             )}
           </main>
 
-          <Footer />
+          <Footer setActiveView={setView} />
         </motion.div>
       )}
     </>

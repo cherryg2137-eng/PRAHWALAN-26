@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Footer = () => {
+const Footer = ({ setActiveView }) => {
     return (
         <footer className="w-full bg-[#050505] pt-12 pb-6 px-4 md:px-8 font-sans relative overflow-hidden">
             {/* Background Glow Effects */}
@@ -55,14 +55,15 @@ const Footer = () => {
                                 </a>
                             </li>
                             <li>
-                                <a href="#timeline" className="hover:text-violet-400 transition-colors duration-300 block transform hover:translate-x-1">
-                                    Events
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#contact" className="hover:text-violet-400 transition-colors duration-300 block transform hover:translate-x-1">
-                                    Contact
-                                </a>
+                                <button
+                                    onClick={() => {
+                                        setActiveView('team');
+                                        window.scrollTo(0, 0);
+                                    }}
+                                    className="hover:text-violet-400 transition-colors duration-300 block transform hover:translate-x-1 text-left w-full"
+                                >
+                                    Team
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -90,11 +91,15 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center text-gray-600 text-xs md:text-sm">
                     <p>&copy; 2026 Prajwalan. All rights reserved.</p>
                     <div className="flex gap-4 mt-4 md:mt-0">
-                        {['bi-instagram', 'bi-linkedin', 'bi-youtube'].map((icon, i) => (
-                            <a key={i} href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-violet-600 hover:text-white transition-all duration-300 text-gray-400">
-                                <i className={`bi ${icon}`}></i>
-                            </a>
-                        ))}
+                        <a href="https://www.instagram.com/srkr_ace?igsh=YmNlZGxhbnJicDg=" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-violet-600 hover:text-white transition-all duration-300 text-gray-400">
+                            <i className="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/association-of-computer-engineers-ace/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-violet-600 hover:text-white transition-all duration-300 text-gray-400">
+                            <i className="bi bi-linkedin"></i>
+                        </a>
+                        <a href="mailto:srkraceofficial@gmail.com" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-violet-600 hover:text-white transition-all duration-300 text-gray-400">
+                            <i className="bi bi-envelope-fill"></i>
+                        </a>
                     </div>
                 </div>
             </div>

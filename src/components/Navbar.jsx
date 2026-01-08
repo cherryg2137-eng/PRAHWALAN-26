@@ -86,7 +86,7 @@ const Navbar = ({ setActiveView }) => {
 
             {/* Mobile Menu Dropdown */}
             {isOpen && (
-                <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-b border-violet-500/20 p-4">
+                <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-b border-violet-500/20 p-4 mobile-nav-dropdown">
                     <div className="flex flex-col space-y-4">
                         {navLinks.map((link) => (
                             <button
